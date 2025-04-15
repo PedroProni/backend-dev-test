@@ -13,18 +13,18 @@ declare global {
 export default async (req: Request, res: Response, next: NextFunction): Promise<any> => {
     const { authorization } = req.headers;
     if (!authorization) {
-        return res.status(401).json({ error: 'Sem header' });
+        return res.status(401).json({ error: 'Unauthorized' });
     }
     const token = authorization.split(' ')[1];
     if (!token) {
-        return res.status(401).json({ error: 'Sem Token' });
+        return res.status(401).json({ error: 'Unauthorized' });
     }
     try {
         const data = jwt.verify(token, process.env.JWT_SECRET || 'secret');
         const { email } = data as { email: string };
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(401).json({ error: 'Usuario não encontrado' });
+            return res.status(401).json({ error: 'Unauthorized' });
         }
         req.user = user;
         next();
