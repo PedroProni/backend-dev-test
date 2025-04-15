@@ -4,6 +4,7 @@
   "main": "main.ts",
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "dev": "nodemon -r tsconfig-paths/register src/main.ts",
     "build": "tsc"
   },
   "keywords": [],
@@ -16,6 +17,7 @@
     "class-validator": "^0.14.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
@@ -23,6 +25,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
     "tsconfig-paths": "^4.2.0"
   }
 }

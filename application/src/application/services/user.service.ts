@@ -16,6 +16,14 @@ export class UserService {
     return await this.userRepository.create(user);
   }
 
+  async login(email: string, password: string) {
+    const user = await this.userRepository.login(email, password);
+    if (!user) {
+      return { error: 'Invalid email or password' };
+    }
+    return user;
+  }
+
   async show(id: string) {
     return await this.userExists(id);
   }
