@@ -18,8 +18,8 @@ export class UserRepository implements IUserRepository {
     }
   
     async create(user: IUser): Promise<IUser> {
-      const newUser = new User(user);
-      return await newUser.save();
+      const new_user = new User(user);
+      return await new_user.save();
     }
   
     async update(id: string, user: Partial<IUser>): Promise<IUser | null> {
