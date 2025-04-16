@@ -39,7 +39,8 @@ export class UserRepository implements IUserRepository {
   }
 
   async update(id: string, user: Partial<IUser>): Promise<IUser | null> {
-    return await User.findByIdAndUpdate(id, user, { new: true });
+    await User.findByIdAndUpdate(id, user, { new: true });
+    return await User.findById(id, { password: 0 });
   }
 
   async delete(id: string): Promise<boolean> {
