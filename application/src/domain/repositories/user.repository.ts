@@ -26,25 +26,25 @@ export class UserRepository implements IUserRepository {
     const email_service = new EmailService();
     await email_service.sendEmail(
       user.email,
-      '🎉 Bem vindo ao meu aplicativo! 🎉',
-      'Esta é a mensagem de boas vindas!',
+      '🚀 Bem vindo ao clube dos devs incríveis! 🚀',
+      'Prepare-se para uma jornada épica!',
       `
-      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
-      <h1 style="color: #4CAF50; text-align: center;">Bem vindo ao meu aplicativo!</h1>
+      <div style="font-family: Comic Sans MS, Arial, sans-serif; line-height: 1.8; color: #333; max-width: 600px; margin: auto; padding: 20px; border: 3px dashed #4CAF50; border-radius: 15px; background-color: #f0fff4;">
+      <h1 style="color: #4CAF50; text-align: center;">🎉 Bem vindo ao clube dos devs incríveis! 🎉</h1>
       <p style="font-size: 16px;">Olá <strong>${user.name}</strong>,</p>
-      <p style="font-size: 16px;">Se você está vendo essa mensagem, quer dizer que meu e-mail está funcionando :)</p>
-      <p style="font-size: 16px;">Coisas que você pode fazer dentro da API:</p>
+      <p style="font-size: 16px;">Você acaba de desbloquear o nível <strong>Iniciante Supremo</strong> no meu aplicativo! 🏆</p>
+      <p style="font-size: 16px;">Aqui estão algumas missões que você pode completar:</p>
       <ul style="font-size: 16px; padding-left: 20px;">
-        <li>Cadastrar usuários.</li>
-        <li>Ver usuários.</li>
-        <li>Modificar usuários.</li>
-        <li>Deletar usuários.</li>
+      <li>👤 Cadastrar novos usuários (porque mais é sempre melhor).</li>
+      <li>🔍 Espiar... digo, ver usuários cadastrados.</li>
+      <li>✏️ Atualizar informações (ninguém é perfeito, certo?).</li>
+      <li>🗑️ Deletar usuários (mas só se for realmente necessário).</li>
       </ul>
-      <p style="font-size: 16px;">Uau que API incrivel além de ter validações de erro ela manda um e-mail no cadastro?</p>
-      <p style="font-size: 16px; margin-top: 20px;">Bem vindo,</p>
-      <p style="font-size: 16px;"><strong>Pedro Proni</strong></p>
+      <p style="font-size: 16px;">E o melhor de tudo? Sim, essa API manda e-mails estilosos como este! 😎</p>
+      <p style="font-size: 16px; margin-top: 20px;">Prepare-se para dominar o mundo dos devs,</p>
+      <p style="font-size: 16px;"><strong>Pedro Proni</strong> (Seu guia nessa aventura!)</p>
       <footer style="margin-top: 30px; font-size: 12px; text-align: center; color: #777;">
-        <p>Me contrata!.</p>
+      <p>🚀 PS: Me contrata e vamos conquistar o mundo juntos! 🌍</p>
       </footer>
       </div>
       `
