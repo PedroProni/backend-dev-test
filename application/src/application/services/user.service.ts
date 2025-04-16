@@ -29,13 +29,21 @@ export class UserService {
   }
 
   async update(id: string, user: Partial<IUser>) {
-    await this.userExists(id);
-    return await this.userRepository.update(id, user);
+    const verify = await this.userExists(id);
+    if ('error' in verify) {
+      return verify;
+    } else {
+      return await this.userRepository.update(id, user);
+    }
   }
 
   async remove(id: string) {
-    await this.userExists(id);
-    return await this.userRepository.delete(id);
+    const verify = await this.userExists(id);
+    if ('error' in verify) {
+      return verify;
+    } else {
+      return await this.userRepository.delete(id);
+    }
   }
 
   //Métodos auxiliares
