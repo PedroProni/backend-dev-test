@@ -1,7 +1,8 @@
-import { IUser } from '@domain/entities/user.entity';
-import { IUserRepository } from '@domain/repositories/user.repository';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+import speakeasy from 'speakeasy';
+import { IUser } from '@domain/entities/user.entity';
+import { IUserRepository } from '@domain/repositories/user.repository';
 
 export class UserService {
   constructor(private readonly userRepository: IUserRepository) {}
@@ -16,11 +17,28 @@ export class UserService {
     return await this.userRepository.create(user);
   }
 
-  async login(email: string, password: string) {
+  async login(email: string, password: string, token?: string) {
     const user = await this.userRepository.login(email, password);
     if (!user) {
       return { error: 'Invalid email or password' };
     }
+
+    if (user.two_factor_secret) {
+      if (!token) {
+        return { error: '2FA token is required' };
+      }
+    }
+
+    const is_valid = speakeasy.totp.verify({
+      secret: user.two_factor_secret,
+      encoding: 'base32',
+      token,
+    });
+
+    if (!is_valid) {
+      return { error: 'Invalid 2FA token' };
+    }
+
     return user;
   }
 
@@ -45,8 +63,6 @@ export class UserService {
       return await this.userRepository.delete(id);
     }
   }
-
-  //Métodos auxiliares
 
   async userExists(id: string) {
     if (!mongoose.isValidObjectId(id)) {

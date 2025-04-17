@@ -30,12 +30,12 @@ const create = async (req: Request, res: Response) => {
 
 const login = async (req: Request, res: Response) => {
   try {
-    const user = await userService.login(req.body.email, req.body.password);
+    const user = await userService.login(req.body.email, req.body.password, req.body.token);
     if ('email' in user) {
       const token = jsonwebtoken.sign({ email: user.email }, process.env.JWT_SECRET || 'secret', { expiresIn: '1h' });
       res.json({ token });
     } else {
-      res.status(401).json({ error: "Invalid email or password" });
+      res.status(401).json(user);
     }
   }
   catch (e) {
